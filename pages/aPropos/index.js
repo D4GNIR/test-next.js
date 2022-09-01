@@ -1,7 +1,7 @@
 export default function aPropos() {
   return (
-    <main>
-      <h1>Bienvenue sur mon portfolio</h1>
+    <main className='container'>
+      <h1>A propos de moi</h1>
     </main>
   );
 }
