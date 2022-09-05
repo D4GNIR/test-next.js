@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import CarteDeProjet from "../../components/CarteDeProjet/CarteDeProjet";
 import FiltreDeClient from "../../components/FiltresDeClient/FiltresDeClient";
 
-export default function projetsDuClientFiltre() {
+export default function ProjetsDuClientFiltre() {
   const router = useRouter();
   let nomDuClient = router.query.client;
   const annee = router.query.annee;

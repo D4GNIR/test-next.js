@@ -1,4 +1,4 @@
-export default function error404() {
+export default function Error404() {
   return (
     <div
       style={{

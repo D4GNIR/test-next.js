@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function projets() {
+export default function Projets() {
   const router = useRouter();
 
   //   Methode
@@ -13,7 +13,7 @@ export default function projets() {
       <small>
         <Link href={`/perso`}>
           <a style={{ color: "#ee6c4d", textDecoration: "none" }}>
-            Elrond
+            perso
           </a>
         </Link>
       </small>

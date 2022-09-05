@@ -2,9 +2,9 @@ import classes from "./carteDeProjet.module.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function CarteDeProjet() {
+export default function CarteDeProjet(props) {
   const router = useRouter();
-  const slug = "Maze";
+  const { titre, description, annee, slug, client } = props.projet;
 
   //   Methode
   // const cardClickHandler = () => {
@@ -19,8 +19,8 @@ export default function CarteDeProjet() {
   return (
     <Link href={`/projets/${slug}`}>
       <a className={classes.CarteDeProjet}>
-        <h3>Maze</h3>
-        <p>Plateforme entertainement NFT sur Elrond</p>
+        <h3>{titre}</h3>
+        <p>{description}</p>
       </a>
     </Link>
   );
