@@ -35,9 +35,29 @@ export default function ProjetsDuClient(props) {
 }
 
 export async function getStaticPaths() {
+  const client = await connectToDatabase();
+  // connexion à bdd
+  const db = client.db();
+
+  const projets = await db
+    .collection("projets")
+    .find()
+    .toArray();
+  let arrayPaths = projets.map((projet) => {
+    if (projet.client == "Projet personnel") {
+      return "perso";
+    } else {
+      projet.client;
+    }
+  });
+  arrayPaths = [...new Set(arrayPaths)];
+  const dynamicPaths = arrayPaths.map((path) => ({
+    params: { client: path },
+  }));
+
   return {
-    paths: [{ params: { client: "perso" } }],
-    fallback: "blocking",
+    paths: dynamicPaths,
+    fallback: false,
   };
 }
 
