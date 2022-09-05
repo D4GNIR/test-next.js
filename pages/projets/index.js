@@ -30,7 +30,11 @@ export async function getStaticProps() {
     const db = client.db();
 
     // Récupérer les projets
-    projets = await db.collection("projets").find().toArray();
+    projets = await db
+      .collection("projets")
+      .find()
+      .sort({ DateDePublication: "desc" })
+      .toArray();
   } catch (error) {
     projets = [];
   }
