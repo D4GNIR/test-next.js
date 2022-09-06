@@ -14,7 +14,7 @@ export default function Header() {
       >
         <Link href='/'>
           <h1 style={{ margin: 0 }} className={classes.title}>
-            Jérémie
+            Dagnir
           </h1>
         </Link>
 
@@ -33,9 +33,6 @@ export default function Header() {
             </li>
             <li>
               <Link href='/projets'>Projets</Link>
-            </li>
-            <li>
-              <Link href='/aPropos'>A propos</Link>
             </li>
           </ul>
         </nav>
