@@ -29,29 +29,65 @@ export default function Projet(props) {
     </>
   );
 }
-export async function getStaticPaths() {
-  let projets;
 
-  try {
-    const client = await connectToDatabase();
-    const db = client.db();
+// export async function getStaticPaths() {
+//   let projets;
 
-    projets = await db.collection("projets").find().toArray();
-  } catch (error) {
-    projets = [];
-  }
+//   try {
+//     const client = await connectToDatabase();
+//     const db = client.db();
 
-  const dynamicPaths = projets.map((projet) => ({
-    params: { slug: projet.slug },
-  }));
+//     projets = await db.collection("projets").find().toArray();
+//   } catch (error) {
+//     projets = [];
+//   }
 
-  return {
-    paths: dynamicPaths,
-    fallback: "blocking",
-  };
-}
+//   const dynamicPaths = projets.map((projet) => ({
+//     params: { slug: projet.slug },
+//   }));
 
-export async function getStaticProps(context) {
+//   return {
+//     paths: dynamicPaths,
+//     fallback: "blocking",
+//   };
+// }
+
+// export async function getStaticProps(context) {
+// // Variables
+// let projetRecup;
+// let { params } = context;
+// const slug = params.slug;
+
+// try {
+//   const client = await connectToDatabase();
+//   const db = client.db();
+
+//   // Récupérer les projets
+//   projetRecup = await db
+//     .collection("projets")
+//     .find({ slug: slug })
+//     .sort({ annee: "desc" })
+//     .toArray();
+// } catch (error) {
+//   projetRecup = [];
+// }
+
+// if (!projetRecup[0]) {
+//   return {
+//     // notFound: true,
+//     redirect: { destination: "/" },
+//   };
+// }
+
+// return {
+//   props: {
+//     projet: JSON.parse(JSON.stringify(projetRecup))[0],
+//   },
+//   revalidate: 3600,
+// };
+// }
+
+export async function getServerSideProps(context) {
   // Variables
   let projetRecup;
   let { params } = context;
@@ -82,6 +118,5 @@ export async function getStaticProps(context) {
     props: {
       projet: JSON.parse(JSON.stringify(projetRecup))[0],
     },
-    revalidate: 3600,
   };
 }
