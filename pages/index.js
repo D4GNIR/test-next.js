@@ -1,6 +1,7 @@
 import CarteDeProjet from "../components/CarteDeProjet/CarteDeProjet";
 import { connectToDatabase } from "../helpers/mongodb";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Index(props) {
   return (
@@ -44,15 +45,24 @@ export default function Index(props) {
             </a>
           </p>
         </div>
-        <img
-          src='/dagnir.png'
-          alt='Dagnir'
-          style={{
-            width: "150px",
-            height: "150px",
-            borderRadius: "50%",
-          }}
-        />
+        <div>
+          <div
+            style={{
+              borderRadius: "50%",
+              overflow: "hidden",
+              lineHeight: "0",
+            }}
+          >
+            <Image
+              src='/dagnir.png'
+              alt='Dagnir'
+              width={150}
+              height={150}
+              layout='fixed'
+              loading='eager'
+            />
+          </div>
+        </div>
       </div>
       <div>
         <h2 style={{ marginTop: "45px" }}>Mes derniers projets</h2>
