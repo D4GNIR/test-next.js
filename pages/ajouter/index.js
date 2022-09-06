@@ -1,5 +1,9 @@
 import { useForm } from "react-hook-form";
 import Head from "next/head";
+import { SpinnerDotted } from "spinners-react";
+import { useState } from "react";
+import Error from "../../components/UI/Error/Error";
+import { useRouter } from "next/router";
 
 export default function Ajouter() {
   const {
@@ -8,19 +12,30 @@ export default function Ajouter() {
     formState: { errors },
   } = useForm();
 
+  // UseState
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+  const router = useRouter();
+
   // method
   const formSubmit = async (data) => {
-    const response = await fetch("/api/projet", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    const fetchedData = await response.json();
+    if (!isLoading) {
+      setIsLoading(true);
+      setError(null);
+      const response = await fetch("/api/projet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const fetchedData = await response.json();
 
-    if (!response.ok) {
-      console.log(fetchedData.message || "Une erreur est survenue");
-    } else {
-      console.log(fetchedData);
+      if (!response.ok) {
+        setIsLoading(false);
+        setError(fetchedData.message || "Une erreur est survenue");
+      } else {
+        setIsLoading(false);
+        router.replace(`/projets/${fetchedData.projet.slug}`);
+      }
     }
   };
 
@@ -38,18 +53,9 @@ export default function Ajouter() {
             errors.annee ||
             errors.description ||
             errors.contenu) && (
-            <div
-              style={{
-                margin: "15px 0 15px 0",
-                backgroundColor: "#ee6c4d",
-                color: "white",
-                padding: "10px",
-                borderRadius: "5px",
-              }}
-            >
-              Rempli tous les champs du formulaire
-            </div>
+            <Error>Rempli tous les champs du formulaire</Error>
           )}
+          {error && <Error>{error}</Error>}
           <form onSubmit={handleSubmit(formSubmit)}>
             <p>
               <label htmlFor='titre' style={{ display: "block" }}>
@@ -188,7 +194,16 @@ export default function Ajouter() {
                   borderRadius: "5px",
                 }}
               >
-                Ajouter
+                {isLoading ? (
+                  <SpinnerDotted
+                    size={15}
+                    thickness={100}
+                    speed={100}
+                    color='#ffffff'
+                  />
+                ) : (
+                  "Ajouter"
+                )}
               </button>
             </div>
           </form>
