@@ -33,8 +33,8 @@ export default function ProjetsDuClientFiltre(props) {
           marginTop: "15px",
         }}
       >
-        {props.projets.map((projet) => (
-          <CarteDeProjet projet={projet} />
+        {props.projets.map((projet, index) => (
+          <CarteDeProjet projet={projet} key={index} />
         ))}
       </div>
     </>

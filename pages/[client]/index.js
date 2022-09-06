@@ -33,7 +33,7 @@ export default function ProjetsDuClient(props) {
         }}
       >
         {props.projets.map((projet) => (
-          <CarteDeProjet projet={projet} />
+          <CarteDeProjet projet={projet} key={projet._id} />
         ))}
       </div>
     </>
