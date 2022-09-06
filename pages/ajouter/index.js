@@ -9,8 +9,19 @@ export default function Ajouter() {
   } = useForm();
 
   // method
-  const formSubmit = (data) => {
-    console.log(data);
+  const formSubmit = async (data) => {
+    const response = await fetch("/api/projet", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const fetchedData = await response.json();
+
+    if (!response.ok) {
+      console.log(fetchedData.message || "Une erreur est survenue");
+    } else {
+      console.log(fetchedData);
+    }
   };
 
   return (
