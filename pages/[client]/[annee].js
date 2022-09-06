@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { connectToDatabase } from "../../helpers/mongodb";
 import CarteDeProjet from "../../components/CarteDeProjet/CarteDeProjet";
 import FiltreDeClient from "../../components/FiltresDeClient/FiltresDeClient";
+import Head from "next/head";
 
 export default function ProjetsDuClientFiltre(props) {
   // Variable
@@ -17,6 +18,9 @@ export default function ProjetsDuClientFiltre(props) {
 
   return (
     <>
+      <Head>
+        <title>{nomDuClient}</title>
+      </Head>
       <h1>{nomDuClient}</h1>
 
       {/* Filtres */}

@@ -1,9 +1,13 @@
 import CarteDeProjet from "../../components/CarteDeProjet/CarteDeProjet";
 import { connectToDatabase } from "../../helpers/mongodb";
+import Head from "next/head";
 
 export default function Projets(props) {
   return (
     <>
+      <Head>
+        <title>Mes projets</title>
+      </Head>
       <h1>Mes Projets</h1>
       <div
         style={{

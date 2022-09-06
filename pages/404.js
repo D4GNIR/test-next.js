@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 export default function Error404() {
   return (
     <div
@@ -5,6 +7,10 @@ export default function Error404() {
         textAlign: "center",
       }}
     >
+      <Head>
+        <title>Erreur 404 - page introuvable</title>
+      </Head>
+      ;
       <h1
         style={{
           fontSize: "5rem",

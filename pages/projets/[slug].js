@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { connectToDatabase } from "../../helpers/mongodb";
+import Head from "next/head";
 
 export default function Projet(props) {
   // Variable
@@ -11,6 +12,9 @@ export default function Projet(props) {
 
   return (
     <>
+      <Head>
+        <title>{titre}</title>
+      </Head>
       <h1 style={{ marginBottom: ".5rem" }}>{titre}</h1>
       <small style={{ display: "flex", gap: "15px" }}>
         <Link href={`/${ClientDisplay}`}>
