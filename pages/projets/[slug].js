@@ -73,7 +73,8 @@ export async function getStaticProps(context) {
 
   if (!projetRecup[0]) {
     return {
-      notFound: true,
+      // notFound: true,
+      redirect: { destination: "/" },
     };
   }
 
