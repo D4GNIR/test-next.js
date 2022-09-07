@@ -5,7 +5,7 @@ import Head from "next/head";
 export default function Projet(props) {
   // Variable
   const { titre, description, client, annee, slug } = props.projet;
-  let ClientDisplay;
+  let ClientDisplay = client;
   if (client == "Projet personnel") {
     ClientDisplay = "perso";
   }
