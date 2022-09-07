@@ -4,6 +4,7 @@ import { SpinnerDotted } from "spinners-react";
 import { useState } from "react";
 import Error from "../../components/UI/Error/Error";
 import { useRouter } from "next/router";
+import MyButton from "../../components/UI/Button/MyButton";
 
 export default function Ajouter() {
   const {
@@ -44,7 +45,9 @@ export default function Ajouter() {
       <Head>
         <title>Ajouter un projet</title>
       </Head>
-      <h1>Ajouter un projet</h1>
+      <h1 style={{ textAlign: "center", marginTop: "35px" }}>
+        Ajouter un projet
+      </h1>
       <section style={{ display: "flex", justifyContent: "center" }}>
         <main style={{ backgroundColor: "#f3f3f3", padding: "30px" }}>
           {(errors.titre ||
@@ -64,14 +67,6 @@ export default function Ajouter() {
               <input
                 id='titre'
                 placeholder='Entre un titre'
-                style={{
-                  display: "block",
-                  width: "400px",
-                  border: "1px solid gray",
-                  padding: "10px 15px 10px 15px",
-                  borderRadius: "5px",
-                  marginTop: "5px",
-                }}
                 {...register("titre", {
                   required: true,
                 })}
@@ -84,14 +79,6 @@ export default function Ajouter() {
               <input
                 id='slug'
                 placeholder='Entre un slug'
-                style={{
-                  display: "block",
-                  width: "400px",
-                  border: "1px solid gray",
-                  padding: "10px 15px 10px 15px",
-                  borderRadius: "5px",
-                  marginTop: "5px",
-                }}
                 {...register("slug", {
                   required: true,
                 })}
@@ -104,14 +91,6 @@ export default function Ajouter() {
               <input
                 id='client'
                 placeholder='Entre un client'
-                style={{
-                  display: "block",
-                  width: "400px",
-                  border: "1px solid gray",
-                  padding: "10px 15px 10px 15px",
-                  borderRadius: "5px",
-                  marginTop: "5px",
-                }}
                 {...register("client", {
                   required: true,
                 })}
@@ -124,14 +103,6 @@ export default function Ajouter() {
               <input
                 id='annee'
                 placeholder='Entre une anneé'
-                style={{
-                  display: "block",
-                  width: "400px",
-                  border: "1px solid gray",
-                  padding: "10px 15px 10px 15px",
-                  borderRadius: "5px",
-                  marginTop: "5px",
-                }}
                 {...register("annee", {
                   required: true,
                 })}
@@ -185,15 +156,7 @@ export default function Ajouter() {
               ></textarea>
             </p>
             <div style={{ display: "flex", justifyContent: "end" }}>
-              <button
-                style={{
-                  border: "0",
-                  backgroundColor: "#ee6c4d",
-                  color: "white",
-                  padding: "10px 15px 10px 15px",
-                  borderRadius: "5px",
-                }}
-              >
+              <MyButton>
                 {isLoading ? (
                   <SpinnerDotted
                     size={15}
@@ -204,7 +167,7 @@ export default function Ajouter() {
                 ) : (
                   "Ajouter"
                 )}
-              </button>
+              </MyButton>
             </div>
           </form>
         </main>
