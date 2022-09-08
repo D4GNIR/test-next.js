@@ -2,6 +2,7 @@ import CarteDeProjet from "../components/CarteDeProjet/CarteDeProjet";
 import { connectToDatabase } from "../helpers/mongodb";
 import Head from "next/head";
 import Image from "next/image";
+import { getSession } from "next-auth/client";
 
 export default function Index(props) {
   return (
@@ -9,7 +10,12 @@ export default function Index(props) {
       <Head>
         <title>Portfolio - Dagnir</title>
       </Head>
-      <h1>Bienvenue sur mon portfolio</h1>
+      <h1>
+        Bienvenue{" "}
+        {props.utilisateur
+          ? `${props.utilisateur.name} sur mon portfolio`
+          : "sur mon portfolio"}
+      </h1>
       <div
         style={{
           border: "2px solid #ee6c4d",
@@ -82,9 +88,16 @@ export default function Index(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
   // Variables
   let projets;
+  // permet de recupérer la requete
+  const session = await getSession({ req: context.req });
+  let utilisateur = null;
+
+  if (session) {
+    utilisateur = session.user;
+  }
 
   try {
     const client = await connectToDatabase();
@@ -104,7 +117,7 @@ export async function getStaticProps() {
   return {
     props: {
       projets: JSON.parse(JSON.stringify(projets)),
+      utilisateur: utilisateur,
     },
-    revalidate: 60,
   };
 }
