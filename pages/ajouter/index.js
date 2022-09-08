@@ -5,6 +5,7 @@ import { useState } from "react";
 import Error from "../../components/UI/Error/Error";
 import { useRouter } from "next/router";
 import MyButton from "../../components/UI/Button/MyButton";
+import { getSession } from "next-auth/client";
 
 export default function Ajouter() {
   const {
@@ -174,4 +175,21 @@ export default function Ajouter() {
       </section>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/connexion",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }

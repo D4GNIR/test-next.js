@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Error from "../../components/UI/Error/Error";
 import { SpinnerDotted } from "spinners-react";
+import { getSession } from "next-auth/client";
 
 export default function Inscription() {
   const {
@@ -118,4 +119,21 @@ export default function Inscription() {
       </section>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/connexion",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }
