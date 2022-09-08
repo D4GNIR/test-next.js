@@ -2,6 +2,7 @@ import MyButton from "../../components/UI/Button/MyButton";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Error from "../../components/UI/Error/Error";
+import { SpinnerDotted } from "spinners-react";
 
 export default function Inscription() {
   const {
@@ -98,7 +99,18 @@ export default function Inscription() {
                 )}
               </p>
               <div style={{ display: "flex", justifyContent: "end" }}>
-                <MyButton>Je m'inscris</MyButton>
+                <MyButton>
+                  {isLoading ? (
+                    <SpinnerDotted
+                      size={15}
+                      thickness={100}
+                      speed={100}
+                      color='#ffffff'
+                    />
+                  ) : (
+                    "Je m'inscris"
+                  )}
+                </MyButton>
               </div>
             </form>
           )}

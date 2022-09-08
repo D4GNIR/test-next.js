@@ -51,7 +51,10 @@ export async function getStaticPaths() {
   const db = client.db();
 
   // Récupérer les projets
-  const projets = await db.collection("projets").find().toArray();
+  const projets = await db
+    .collection("projets")
+    .find()
+    .toArray();
 
   let arrayPaths = projets.map((projet) => {
     if (projet.client == "Projet personnel") {

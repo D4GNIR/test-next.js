@@ -1,5 +1,10 @@
 import MyButton from "../../components/UI/Button/MyButton";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/client";
+import { SpinnerDotted } from "spinners-react";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import Error from "../../components/UI/Error/Error";
 
 export default function Connexion() {
   const {
@@ -8,9 +13,27 @@ export default function Connexion() {
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
+
+  // UseState
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+
   //   Methode
-  const onFormSubmit = (data) => {
-    console.log(data);
+  const onFormSubmit = async (data) => {
+    setIsLoading(true);
+    const resultat = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+    setIsLoading(false);
+
+    if (resultat.error) {
+      setError(resultat.error);
+    } else {
+      router.replace("/");
+    }
   };
   return (
     <>
@@ -19,6 +42,7 @@ export default function Connexion() {
       </h1>
       <section style={{ display: "flex", justifyContent: "center" }}>
         <main style={{ backgroundColor: "#f3f3f3", padding: "30px" }}>
+          {error && <Error>{error}</Error>}
           <form onSubmit={handleSubmit(onFormSubmit)}>
             <p>
               <label htmlFor='email'>Addresse email</label>
@@ -51,7 +75,18 @@ export default function Connexion() {
               )}
             </p>
             <div style={{ display: "flex", justifyContent: "end" }}>
-              <MyButton>Je me connecte</MyButton>
+              <MyButton>
+                {isLoading ? (
+                  <SpinnerDotted
+                    size={15}
+                    thickness={100}
+                    speed={100}
+                    color='#ffffff'
+                  />
+                ) : (
+                  "Je me connecte"
+                )}
+              </MyButton>
             </div>
           </form>
         </main>
