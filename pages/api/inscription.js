@@ -25,6 +25,7 @@ export default async function handler(req, res) {
       pseudo,
       email,
       password,
+      roles: ["utilisateur"],
     };
 
     // Vérifier la syntaxe de l'email

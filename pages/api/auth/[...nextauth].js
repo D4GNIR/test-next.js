@@ -38,8 +38,22 @@ export default NextAuth({
         return {
           email: utilisateur.email,
           name: utilisateur.pseudo,
+          photo: null,
+          id: utilisateur.id,
+          roles: utilisateur.roles,
         };
       },
     }),
   ],
+  // Par defaut on a que trois propriété qu'on retrouve si on en veux plus il faut utiliser les callbacks
+  callbacks: {
+    jwt: async (token, user) => {
+      user && (token.user = user);
+      return token;
+    },
+    session: async (session, user) => {
+      session.user = user.user;
+      return session;
+    },
+  },
 });

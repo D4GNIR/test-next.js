@@ -11,7 +11,7 @@ export default function Index(props) {
         <title>Portfolio - Dagnir</title>
       </Head>
       <h1>
-        Bienvenue{" "}
+        Bienvenue
         {props.utilisateur
           ? `${props.utilisateur.name} sur mon portfolio`
           : "sur mon portfolio"}
@@ -97,6 +97,7 @@ export async function getServerSideProps(context) {
 
   if (session) {
     utilisateur = session.user;
+    // console.log(utilisateur);
   }
 
   try {

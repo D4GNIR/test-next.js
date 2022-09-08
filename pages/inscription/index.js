@@ -124,7 +124,7 @@ export default function Inscription() {
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
 
-  if (!session) {
+  if (session) {
     return {
       redirect: {
         destination: "/connexion",
