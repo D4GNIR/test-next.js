@@ -1,7 +1,16 @@
 import classes from "./Header.module.css";
 import Link from "next/link";
+import { signOut } from "next-auth/client";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
+
+  const onLogoutClickedHandler = () => {
+    signOut();
+    router.push("/");
+  };
+
   return (
     <header className={classes.Header}>
       <div
@@ -42,6 +51,14 @@ export default function Header() {
             </li>
             <li>
               <Link href='/inscription'>Inscription</Link>
+            </li>
+            <li>
+              <a
+                style={{ cursor: "pointer" }}
+                onClick={onLogoutClickedHandler}
+              >
+                Déconnexion
+              </a>
             </li>
           </ul>
         </nav>
