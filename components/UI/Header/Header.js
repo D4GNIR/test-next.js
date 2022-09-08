@@ -1,9 +1,10 @@
 import classes from "./Header.module.css";
 import Link from "next/link";
-import { signOut } from "next-auth/client";
+import { signOut, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 
 export default function Header() {
+  const [session, loading] = useSession();
   const router = useRouter();
 
   const onLogoutClickedHandler = () => {
@@ -43,23 +44,32 @@ export default function Header() {
             <li>
               <Link href='/projets'>Projets</Link>
             </li>
-            <li>
-              <Link href='/ajouter'>Ajouter</Link>
-            </li>
-            <li>
-              <Link href='/connexion'>Connexion</Link>
-            </li>
-            <li>
-              <Link href='/inscription'>Inscription</Link>
-            </li>
-            <li>
-              <a
-                style={{ cursor: "pointer" }}
-                onClick={onLogoutClickedHandler}
-              >
-                Déconnexion
-              </a>
-            </li>
+            {/* On affiche si il n'y a rien dans la session et si loading et terminé */}
+            {!session && !loading && (
+              <>
+                <li>
+                  <Link href='/connexion'>Connexion</Link>
+                </li>
+                <li>
+                  <Link href='/inscription'>Inscription</Link>
+                </li>
+              </>
+            )}
+            {session && (
+              <>
+                <li>
+                  <Link href='/ajouter'>Ajouter</Link>
+                </li>
+                <li>
+                  <a
+                    style={{ cursor: "pointer" }}
+                    onClick={onLogoutClickedHandler}
+                  >
+                    Déconnexion
+                  </a>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>
