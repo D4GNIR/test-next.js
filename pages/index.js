@@ -124,7 +124,7 @@ export default function Index(props) {
           >
             <Image
               src='/dagnir.png'
-              alt='Dagnir'
+              alt='dagnir'
               width={150}
               height={150}
               layout='fixed'
