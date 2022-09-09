@@ -9,6 +9,7 @@ const nextConfig = (phase) => {
         mongodb_username: "Dagnir",
         mongodb_password: "D3vD39ia87VmsF",
         mongodb_dbname: "portfolio",
+        NEXTAUTH_URL: "http://localhost:3000",
       },
     };
   }
@@ -18,6 +19,7 @@ const nextConfig = (phase) => {
       mongodb_username: "Dagnir",
       mongodb_password: "D3vD39ia87VmsF",
       mongodb_dbname: "portfolio",
+      NEXTAUTH_URL: "http://localhost:3000",
     },
   };
 };
