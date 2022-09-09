@@ -127,8 +127,6 @@ export default function Index(props) {
               alt='Dagnir'
               width={150}
               height={150}
-              layout='fixed'
-              loading='eager'
             />
           </div>
         </div>
