@@ -123,7 +123,7 @@ export default function Index(props) {
             }}
           >
             <Image
-              src='/dagnir.png'
+              src='/Dagnir.png'
               alt='dagnir'
               width={150}
               height={150}
