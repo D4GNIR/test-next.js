@@ -1,4 +1,4 @@
-import classes from "./carteDeProjet.module.css";
+import classes from "./CarteDeProjet.module.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
