@@ -132,7 +132,7 @@ export default function Index(props) {
         </div>
       </div>
       <div>
-        <h2 style={{ marginTop: "45px" }}>Mes derniers projets a</h2>
+        <h2 style={{ marginTop: "45px" }}>Mes derniers projets</h2>
         <div
           style={{
             display: "grid",
