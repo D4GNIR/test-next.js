@@ -40,7 +40,7 @@ export default function Index(props) {
         Bienvenue
         {props.utilisateur
           ? `${props.utilisateur.name} sur mon portfolio`
-          : " sur mon portfolio"}
+          : " sur mon portfolio!"}
       </h1>
       <div
         style={{
