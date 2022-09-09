@@ -122,12 +122,10 @@ export default function Index(props) {
               lineHeight: "0",
             }}
           >
-            <Image
+            <img
               src='/Dagnir.png'
               alt='dagnir'
-              width={150}
-              height={150}
-              layout='fixed'
+              style={{ width: "150", height: "150" }}
             />
           </div>
         </div>
