@@ -179,23 +179,31 @@ export default function Ajouter() {
 
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
-
-  if (!session && session.user.roles.includes("administrateur")) {
+  if (!session) {
     return {
       redirect: {
         destination: "/connexion",
         permanent: false,
       },
     };
-  }
+  } else {
+    if (!session && session.user.roles.includes("administrateur")) {
+      return {
+        redirect: {
+          destination: "/connexion",
+          permanent: false,
+        },
+      };
+    }
 
-  if (session && !session.user.roles.includes("administrateur")) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
+    if (session && !session.user.roles.includes("administrateur")) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
   }
 
   return {

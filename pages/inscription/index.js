@@ -49,7 +49,7 @@ export default function Inscription() {
           {error && <Error>{error}</Error>}
           {isRegister ? (
             <div>
-              Félicitations ! Vous pouvez vous connecter
+              Félicitations ! Vous pouvez vous connecter{" "}
               {isRegister.pseudo}.
             </div>
           ) : (
@@ -74,7 +74,8 @@ export default function Inscription() {
                   placeholder='email'
                   {...register("email", {
                     required: true,
-                    pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    pattern:
+                      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                   })}
                 />
                 {errors.email && errors.email.type === "required" && (

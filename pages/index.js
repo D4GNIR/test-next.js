@@ -39,7 +39,7 @@ export default function Index(props) {
       <h1>
         Bienvenue
         {props.utilisateur
-          ? `${props.utilisateur.name} sur mon portfolio`
+          ? ` ${props.utilisateur.name} sur mon portfolio`
           : " sur mon portfolio!"}
       </h1>
       <div
@@ -58,7 +58,7 @@ export default function Index(props) {
             Je m'appelle <b>Dagnir</b>
           </h2>
           <p>
-            Je suis dévellopeur full-stack, je maîtise de nombreuses
+            Je suis développeur full-stack, je maîtrise de nombreuses
             technologies. Envie de collaborer avec moi?
           </p>
           <p>
@@ -84,6 +84,7 @@ export default function Index(props) {
                   border: "none",
                   padding: "10px 15px 10px 15px",
                   borderRadius: "5px",
+                  cursor: "pointer",
                 }}
                 onClick={onDeleteClick}
               >

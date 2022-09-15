@@ -20,7 +20,7 @@ export default NextAuth({
 
         if (!utilisateur) {
           clientMongoDB.close();
-          throw new Error("Impossible de vous authentifier 1 ");
+          throw new Error("Impossible de vous authentifier");
         }
         // 2eme etape : mot de passe ok
         const isValid = await verifyPassword(
